@@ -1,4 +1,9 @@
 #include "systemcalls.h"
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <fcntl.h>
 
 /**
  * @param cmd the command to execute with system()
@@ -16,8 +21,18 @@ bool do_system(const char *cmd)
  *   and return a boolean true if the system() call completed with success
  *   or false() if it returned a failure
 */
+	int retVal;
 
-    return true;
+	retVal = system(cmd);
+
+	if(retVal == 0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 /**
@@ -43,11 +58,12 @@ bool do_exec(int count, ...)
     for(i=0; i<count; i++)
     {
         command[i] = va_arg(args, char *);
+	printf("Index: %d, Command:%s\n", i, command[i]);
     }
     command[count] = NULL;
     // this line is to avoid a compile warning before your implementation is complete
     // and may be removed
-    command[count] = command[count];
+    //command[count] = command[count];
 
 /*
  * TODO:
@@ -58,10 +74,50 @@ bool do_exec(int count, ...)
  *   as second argument to the execv() command.
  *
 */
+    bool retVal = false;
+    int status;
+
+    fflush(stdout);
+
+    pid_t p = fork();
+    if(p < 0)
+    {
+	retVal = false;
+    }
+    else if(p == 0)
+    {
+	// Child proccess
+	if(execv(command[0], command) == -1)
+	{
+	    printf("Child terminated with error\n");
+	    exit(1);
+	}
+	else
+	{
+	   printf("Child terminated normally\n");
+	   exit(0);
+	}
+    }
+    else
+    {
+	// Parrent proccess
+	waitpid(p, &status, 0);
+	if(WEXITSTATUS(status) == 0)
+	{
+	    printf("Parent-Wait-Stat:%d-PID:%d \n",WEXITSTATUS(status), p);
+	    retVal = true;
+	}
+	else
+	{
+	    printf("Parent-Wait-Stat:%d-PID:%d \n",WEXITSTATUS(status), p);
+	    retVal = false;
+	}
+    }
+
 
     va_end(args);
 
-    return true;
+    return retVal;
 }
 
 /**
@@ -75,14 +131,16 @@ bool do_exec_redirect(const char *outputfile, int count, ...)
     va_start(args, count);
     char * command[count+1];
     int i;
+    printf("Outputfile:%s\n", outputfile);
     for(i=0; i<count; i++)
     {
         command[i] = va_arg(args, char *);
+	printf("Index: %d, Command:%s\n", i, command[i]);
     }
     command[count] = NULL;
     // this line is to avoid a compile warning before your implementation is complete
     // and may be removed
-    command[count] = command[count];
+    // command[count] = command[count];
 
 
 /*
@@ -93,7 +151,55 @@ bool do_exec_redirect(const char *outputfile, int count, ...)
  *
 */
 
-    va_end(args);
+    bool retVal = false;
+    int status;
 
-    return true;
+    fflush(stdout);
+    int fd = open(outputfile, O_WRONLY|O_TRUNC|O_CREAT, 0644);
+
+
+    pid_t p = fork();
+    if(p < 0)
+    {
+        retVal = false;
+    }
+    else if(p == 0)
+    {
+	if(dup2(fd, 1) < 0) 
+	{
+	   perror("dup2");
+	   abort();
+       	}
+        close(fd);
+        // Child proccess
+        if(execv(command[0], command) == -1)
+        {
+            printf("Child terminated with error\n");
+            exit(1);
+        }
+        else
+        {
+           printf("Child terminated normally\n");
+           exit(0);
+        }
+    }
+    else
+    {
+        // Parrent proccess
+        waitpid(p, &status, 0);
+        if(WEXITSTATUS(status) == 0)
+        {
+            printf("Parent-Wait-Stat:%d-PID:%d \n",WEXITSTATUS(status), p);
+            retVal = true;
+        }
+        else
+        {
+            printf("Parent-Wait-Stat:%d-PID:%d \n",WEXITSTATUS(status), p);
+            retVal = false;
+        }
+    }
+
+    va_end(args);
+    close(fd);
+    return retVal;
 }
