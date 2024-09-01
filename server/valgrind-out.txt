@@ -1,0 +1,434 @@
+==2323117== Memcheck, a memory error detector
+==2323117== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==2323117== Using Valgrind-3.15.0-608cb11914-20190413 and LibVEX; rerun with -h for copyright info
+==2323117== Command: ./aesdsocket
+==2323117== Parent PID: 2323115
+==2323117== 
+--2323117-- 
+--2323117-- Valgrind options:
+--2323117--    --error-exitcode=1
+--2323117--    --leak-check=full
+--2323117--    --show-leak-kinds=all
+--2323117--    --track-origins=yes
+--2323117--    --errors-for-leak-kinds=definite
+--2323117--    --verbose
+--2323117--    --log-file=valgrind-out.txt
+--2323117-- Contents of /proc/version:
+--2323117--   Linux version 5.15.0-119-generic (buildd@lcy02-amd64-068) (gcc (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0, GNU ld (GNU Binutils for Ubuntu) 2.34) #129~20.04.1-Ubuntu SMP Wed Aug 7 13:07:13 UTC 2024
+--2323117-- 
+--2323117-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-rdrand
+--2323117-- Page sizes: currently 4096, max supported 4096
+--2323117-- Valgrind library directory: /usr/lib/x86_64-linux-gnu/valgrind
+--2323117-- Reading syms from /home/uriel/assignment-2-urielzbee/server/aesdsocket
+--2323117-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-2.31.so
+--2323117--   Considering /usr/lib/debug/.build-id/db/0420f708b806cf03260aadb916c330049580b7.debug ..
+--2323117--   .. build-id is valid
+--2323117-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/memcheck-amd64-linux
+--2323117--    object doesn't have a symbol table
+--2323117--    object doesn't have a dynamic symbol table
+--2323117-- Scheduler: using generic scheduler lock implementation.
+--2323117-- Reading suppressions file: /usr/lib/x86_64-linux-gnu/valgrind/default.supp
+==2323117== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-2323117-by-uriel-on-???
+==2323117== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-2323117-by-uriel-on-???
+==2323117== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-2323117-by-uriel-on-???
+==2323117== 
+==2323117== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==2323117== don't want to do, unless you know exactly what you're doing,
+==2323117== or are doing some strange experiment):
+==2323117==   /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=2323117 ...command...
+==2323117== 
+==2323117== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==2323117==   /path/to/gdb ./aesdsocket
+==2323117== and then give GDB the following command
+==2323117==   target remote | /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=2323117
+==2323117== --pid is optional if only one valgrind process is running
+==2323117== 
+--2323117-- REDIR: 0x4022e20 (ld-linux-x86-64.so.2:strlen) redirected to 0x580c9ce2 (???)
+--2323117-- REDIR: 0x4022bf0 (ld-linux-x86-64.so.2:index) redirected to 0x580c9cfc (???)
+--2323117-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_core-amd64-linux.so
+--2323117--    object doesn't have a symbol table
+--2323117-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so
+--2323117--    object doesn't have a symbol table
+==2323117== WARNING: new redirection conflicts with existing -- ignoring it
+--2323117--     old: 0x04022e20 (strlen              ) R-> (0000.0) 0x580c9ce2 ???
+--2323117--     new: 0x04022e20 (strlen              ) R-> (2007.0) 0x0483f060 strlen
+--2323117-- REDIR: 0x401f600 (ld-linux-x86-64.so.2:strcmp) redirected to 0x483ffd0 (strcmp)
+--2323117-- REDIR: 0x4023380 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4843a20 (mempcpy)
+--2323117-- Reading syms from /usr/lib/x86_64-linux-gnu/libc-2.31.so
+--2323117--   Considering /usr/lib/debug/.build-id/07/02430aef5fa3dda43986563e9ffcc47efbd75e.debug ..
+--2323117--   .. build-id is valid
+--2323117-- REDIR: 0x48fb480 (libc.so.6:memmove) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x48fa780 (libc.so.6:strncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x48fb7b0 (libc.so.6:strcasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x48fa0a0 (libc.so.6:strcat) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x48fa7e0 (libc.so.6:rindex) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x48fcc50 (libc.so.6:rawmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x4917ce0 (libc.so.6:wmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x4917820 (libc.so.6:wcscmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x48fb5e0 (libc.so.6:mempcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x48fb410 (libc.so.6:bcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x48fa710 (libc.so.6:strncmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x48fa150 (libc.so.6:strcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x48fb540 (libc.so.6:memset) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x49177e0 (libc.so.6:wcschr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x48fa670 (libc.so.6:strnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x48fa230 (libc.so.6:strcspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x48fb800 (libc.so.6:strncasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x48fa1d0 (libc.so.6:strcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x48fb950 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x4918f50 (libc.so.6:wcsnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x4917860 (libc.so.6:wcscpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x48fa820 (libc.so.6:strpbrk) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x48fa100 (libc.so.6:index) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x48fa630 (libc.so.6:strlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x4903bb0 (libc.so.6:memrchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x48fb850 (libc.so.6:strcasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x48fb3d0 (libc.so.6:memchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x4917930 (libc.so.6:wcslen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x48faae0 (libc.so.6:strspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x48fb750 (libc.so.6:stpncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x48fb6f0 (libc.so.6:stpcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x48fcc90 (libc.so.6:strchrnul) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x48fb8a0 (libc.so.6:strncasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2323117-- REDIR: 0x49e3730 (libc.so.6:__strrchr_avx2) redirected to 0x483ea10 (rindex)
+--2323117-- REDIR: 0x49e6d90 (libc.so.6:__memset_avx2_unaligned_erms) redirected to 0x48428e0 (memset)
+--2323117-- REDIR: 0x48f50e0 (libc.so.6:malloc) redirected to 0x483b780 (malloc)
+--2323117-- REDIR: 0x48f56d0 (libc.so.6:free) redirected to 0x483c9d0 (free)
+--2323117-- REDIR: 0x48fafa0 (libc.so.6:__GI_strstr) redirected to 0x4843ca0 (__strstr_sse2)
+--2323117-- REDIR: 0x49df760 (libc.so.6:__memchr_avx2) redirected to 0x4840050 (memchr)
+--2323117-- REDIR: 0x49e6910 (libc.so.6:__memcpy_avx_unaligned_erms) redirected to 0x48429f0 (memmove)
+--2323117-- REDIR: 0x49e3310 (libc.so.6:__strchr_avx2) redirected to 0x483ebf0 (index)
+--2323117-- REDIR: 0x48f5e80 (libc.so.6:realloc) redirected to 0x483df30 (realloc)
+--2323117-- REDIR: 0x49e3900 (libc.so.6:__strlen_avx2) redirected to 0x483ef40 (strlen)
+--2323117-- REDIR: 0x49dfef0 (libc.so.6:__memcmp_avx2_movbe) redirected to 0x48421e0 (bcmp)
+==2323117== Syscall param rt_sigaction(act->sa_mask) points to uninitialised byte(s)
+==2323117==    at 0x489E166: __libc_sigaction (sigaction.c:58)
+==2323117==    by 0x109772: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323117==  Address 0x1ffeffff18 is on thread 1's stack
+==2323117==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==2323117==  Uninitialised value was created by a stack allocation
+==2323117==    at 0x109548: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323117== 
+==2323117== Syscall param rt_sigaction(act->sa_flags) points to uninitialised byte(s)
+==2323117==    at 0x489E166: __libc_sigaction (sigaction.c:58)
+==2323117==    by 0x109772: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323117==  Address 0x1ffeffff08 is on thread 1's stack
+==2323117==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==2323117==  Uninitialised value was created by a stack allocation
+==2323117==    at 0x109548: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323117== 
+==2323117== Syscall param rt_sigaction(act->sa_mask) points to uninitialised byte(s)
+==2323117==    at 0x489E166: __libc_sigaction (sigaction.c:58)
+==2323117==    by 0x10978B: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323117==  Address 0x1ffeffff18 is on thread 1's stack
+==2323117==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==2323117==  Uninitialised value was created by a stack allocation
+==2323117==    at 0x109548: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323117== 
+==2323117== Syscall param rt_sigaction(act->sa_flags) points to uninitialised byte(s)
+==2323117==    at 0x489E166: __libc_sigaction (sigaction.c:58)
+==2323117==    by 0x10978B: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323117==  Address 0x1ffeffff08 is on thread 1's stack
+==2323117==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==2323117==  Uninitialised value was created by a stack allocation
+==2323117==    at 0x109548: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323117== 
+--2323117-- REDIR: 0x49e68f0 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x4843660 (mempcpy)
+--2323117-- REDIR: 0x49e3540 (libc.so.6:__strchrnul_avx2) redirected to 0x4843540 (strchrnul)
+--2323117-- REDIR: 0x49e4e40 (libc.so.6:__strcpy_avx2) redirected to 0x483f090 (strcpy)
+--2323117-- REDIR: 0x48f6b10 (libc.so.6:calloc) redirected to 0x483dce0 (calloc)
+--2323117-- REDIR: 0x49dfa30 (libc.so.6:__rawmemchr_avx2) redirected to 0x4843580 (rawmemchr)
+==2323125== 
+==2323125== HEAP SUMMARY:
+==2323125==     in use at exit: 0 bytes in 0 blocks
+==2323125==   total heap usage: 23 allocs, 23 frees, 37,421 bytes allocated
+==2323125== 
+==2323125== All heap blocks were freed -- no leaks are possible
+==2323125== 
+==2323125== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
+==2323125== 
+==2323125== 1 errors in context 1 of 4:
+==2323125== Syscall param rt_sigaction(act->sa_flags) points to uninitialised byte(s)
+==2323125==    at 0x489E166: __libc_sigaction (sigaction.c:58)
+==2323125==    by 0x10978B: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323125==  Address 0x1ffeffff08 is on thread 1's stack
+==2323125==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==2323125==  Uninitialised value was created by a stack allocation
+==2323125==    at 0x109548: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323125== 
+==2323125== 
+==2323125== 1 errors in context 2 of 4:
+==2323125== Syscall param rt_sigaction(act->sa_mask) points to uninitialised byte(s)
+==2323125==    at 0x489E166: __libc_sigaction (sigaction.c:58)
+==2323125==    by 0x10978B: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323125==  Address 0x1ffeffff18 is on thread 1's stack
+==2323125==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==2323125==  Uninitialised value was created by a stack allocation
+==2323125==    at 0x109548: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323125== 
+==2323125== 
+==2323125== 1 errors in context 3 of 4:
+==2323125== Syscall param rt_sigaction(act->sa_flags) points to uninitialised byte(s)
+==2323125==    at 0x489E166: __libc_sigaction (sigaction.c:58)
+==2323125==    by 0x109772: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323125==  Address 0x1ffeffff08 is on thread 1's stack
+==2323125==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==2323125==  Uninitialised value was created by a stack allocation
+==2323125==    at 0x109548: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323125== 
+==2323125== 
+==2323125== 1 errors in context 4 of 4:
+==2323125== Syscall param rt_sigaction(act->sa_mask) points to uninitialised byte(s)
+==2323125==    at 0x489E166: __libc_sigaction (sigaction.c:58)
+==2323125==    by 0x109772: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323125==  Address 0x1ffeffff18 is on thread 1's stack
+==2323125==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==2323125==  Uninitialised value was created by a stack allocation
+==2323125==    at 0x109548: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323125== 
+==2323125== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
+==2323135== 
+==2323135== HEAP SUMMARY:
+==2323135==     in use at exit: 0 bytes in 0 blocks
+==2323135==   total heap usage: 26 allocs, 26 frees, 46,195 bytes allocated
+==2323135== 
+==2323135== All heap blocks were freed -- no leaks are possible
+==2323135== 
+==2323135== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
+==2323135== 
+==2323135== 1 errors in context 1 of 4:
+==2323135== Syscall param rt_sigaction(act->sa_flags) points to uninitialised byte(s)
+==2323135==    at 0x489E166: __libc_sigaction (sigaction.c:58)
+==2323135==    by 0x10978B: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323135==  Address 0x1ffeffff08 is on thread 1's stack
+==2323135==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==2323135==  Uninitialised value was created by a stack allocation
+==2323135==    at 0x109548: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323135== 
+==2323135== 
+==2323135== 1 errors in context 2 of 4:
+==2323135== Syscall param rt_sigaction(act->sa_mask) points to uninitialised byte(s)
+==2323135==    at 0x489E166: __libc_sigaction (sigaction.c:58)
+==2323135==    by 0x10978B: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323135==  Address 0x1ffeffff18 is on thread 1's stack
+==2323135==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==2323135==  Uninitialised value was created by a stack allocation
+==2323135==    at 0x109548: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323135== 
+==2323135== 
+==2323135== 1 errors in context 3 of 4:
+==2323135== Syscall param rt_sigaction(act->sa_flags) points to uninitialised byte(s)
+==2323135==    at 0x489E166: __libc_sigaction (sigaction.c:58)
+==2323135==    by 0x109772: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323135==  Address 0x1ffeffff08 is on thread 1's stack
+==2323135==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==2323135==  Uninitialised value was created by a stack allocation
+==2323135==    at 0x109548: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323135== 
+==2323135== 
+==2323135== 1 errors in context 4 of 4:
+==2323135== Syscall param rt_sigaction(act->sa_mask) points to uninitialised byte(s)
+==2323135==    at 0x489E166: __libc_sigaction (sigaction.c:58)
+==2323135==    by 0x109772: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323135==  Address 0x1ffeffff18 is on thread 1's stack
+==2323135==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==2323135==  Uninitialised value was created by a stack allocation
+==2323135==    at 0x109548: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323135== 
+==2323135== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
+==2323145== 
+==2323145== HEAP SUMMARY:
+==2323145==     in use at exit: 0 bytes in 0 blocks
+==2323145==   total heap usage: 29 allocs, 29 frees, 54,969 bytes allocated
+==2323145== 
+==2323145== All heap blocks were freed -- no leaks are possible
+==2323145== 
+==2323145== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
+==2323145== 
+==2323145== 1 errors in context 1 of 4:
+==2323145== Syscall param rt_sigaction(act->sa_flags) points to uninitialised byte(s)
+==2323145==    at 0x489E166: __libc_sigaction (sigaction.c:58)
+==2323145==    by 0x10978B: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323145==  Address 0x1ffeffff08 is on thread 1's stack
+==2323145==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==2323145==  Uninitialised value was created by a stack allocation
+==2323145==    at 0x109548: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323145== 
+==2323145== 
+==2323145== 1 errors in context 2 of 4:
+==2323145== Syscall param rt_sigaction(act->sa_mask) points to uninitialised byte(s)
+==2323145==    at 0x489E166: __libc_sigaction (sigaction.c:58)
+==2323145==    by 0x10978B: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323145==  Address 0x1ffeffff18 is on thread 1's stack
+==2323145==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==2323145==  Uninitialised value was created by a stack allocation
+==2323145==    at 0x109548: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323145== 
+==2323145== 
+==2323145== 1 errors in context 3 of 4:
+==2323145== Syscall param rt_sigaction(act->sa_flags) points to uninitialised byte(s)
+==2323145==    at 0x489E166: __libc_sigaction (sigaction.c:58)
+==2323145==    by 0x109772: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323145==  Address 0x1ffeffff08 is on thread 1's stack
+==2323145==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==2323145==  Uninitialised value was created by a stack allocation
+==2323145==    at 0x109548: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323145== 
+==2323145== 
+==2323145== 1 errors in context 4 of 4:
+==2323145== Syscall param rt_sigaction(act->sa_mask) points to uninitialised byte(s)
+==2323145==    at 0x489E166: __libc_sigaction (sigaction.c:58)
+==2323145==    by 0x109772: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323145==  Address 0x1ffeffff18 is on thread 1's stack
+==2323145==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==2323145==  Uninitialised value was created by a stack allocation
+==2323145==    at 0x109548: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323145== 
+==2323145== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
+==2323155== 
+==2323155== HEAP SUMMARY:
+==2323155==     in use at exit: 0 bytes in 0 blocks
+==2323155==   total heap usage: 32 allocs, 32 frees, 63,743 bytes allocated
+==2323155== 
+==2323155== All heap blocks were freed -- no leaks are possible
+==2323155== 
+==2323155== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
+==2323155== 
+==2323155== 1 errors in context 1 of 4:
+==2323155== Syscall param rt_sigaction(act->sa_flags) points to uninitialised byte(s)
+==2323155==    at 0x489E166: __libc_sigaction (sigaction.c:58)
+==2323155==    by 0x10978B: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323155==  Address 0x1ffeffff08 is on thread 1's stack
+==2323155==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==2323155==  Uninitialised value was created by a stack allocation
+==2323155==    at 0x109548: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323155== 
+==2323155== 
+==2323155== 1 errors in context 2 of 4:
+==2323155== Syscall param rt_sigaction(act->sa_mask) points to uninitialised byte(s)
+==2323155==    at 0x489E166: __libc_sigaction (sigaction.c:58)
+==2323155==    by 0x10978B: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323155==  Address 0x1ffeffff18 is on thread 1's stack
+==2323155==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==2323155==  Uninitialised value was created by a stack allocation
+==2323155==    at 0x109548: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323155== 
+==2323155== 
+==2323155== 1 errors in context 3 of 4:
+==2323155== Syscall param rt_sigaction(act->sa_flags) points to uninitialised byte(s)
+==2323155==    at 0x489E166: __libc_sigaction (sigaction.c:58)
+==2323155==    by 0x109772: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323155==  Address 0x1ffeffff08 is on thread 1's stack
+==2323155==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==2323155==  Uninitialised value was created by a stack allocation
+==2323155==    at 0x109548: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323155== 
+==2323155== 
+==2323155== 1 errors in context 4 of 4:
+==2323155== Syscall param rt_sigaction(act->sa_mask) points to uninitialised byte(s)
+==2323155==    at 0x489E166: __libc_sigaction (sigaction.c:58)
+==2323155==    by 0x109772: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323155==  Address 0x1ffeffff18 is on thread 1's stack
+==2323155==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==2323155==  Uninitialised value was created by a stack allocation
+==2323155==    at 0x109548: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323155== 
+==2323155== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
+==2323166== 
+==2323166== HEAP SUMMARY:
+==2323166==     in use at exit: 0 bytes in 0 blocks
+==2323166==   total heap usage: 35 allocs, 35 frees, 72,517 bytes allocated
+==2323166== 
+==2323166== All heap blocks were freed -- no leaks are possible
+==2323166== 
+==2323166== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
+==2323166== 
+==2323166== 1 errors in context 1 of 4:
+==2323166== Syscall param rt_sigaction(act->sa_flags) points to uninitialised byte(s)
+==2323166==    at 0x489E166: __libc_sigaction (sigaction.c:58)
+==2323166==    by 0x10978B: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323166==  Address 0x1ffeffff08 is on thread 1's stack
+==2323166==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==2323166==  Uninitialised value was created by a stack allocation
+==2323166==    at 0x109548: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323166== 
+==2323166== 
+==2323166== 1 errors in context 2 of 4:
+==2323166== Syscall param rt_sigaction(act->sa_mask) points to uninitialised byte(s)
+==2323166==    at 0x489E166: __libc_sigaction (sigaction.c:58)
+==2323166==    by 0x10978B: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323166==  Address 0x1ffeffff18 is on thread 1's stack
+==2323166==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==2323166==  Uninitialised value was created by a stack allocation
+==2323166==    at 0x109548: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323166== 
+==2323166== 
+==2323166== 1 errors in context 3 of 4:
+==2323166== Syscall param rt_sigaction(act->sa_flags) points to uninitialised byte(s)
+==2323166==    at 0x489E166: __libc_sigaction (sigaction.c:58)
+==2323166==    by 0x109772: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323166==  Address 0x1ffeffff08 is on thread 1's stack
+==2323166==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==2323166==  Uninitialised value was created by a stack allocation
+==2323166==    at 0x109548: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323166== 
+==2323166== 
+==2323166== 1 errors in context 4 of 4:
+==2323166== Syscall param rt_sigaction(act->sa_mask) points to uninitialised byte(s)
+==2323166==    at 0x489E166: __libc_sigaction (sigaction.c:58)
+==2323166==    by 0x109772: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323166==  Address 0x1ffeffff18 is on thread 1's stack
+==2323166==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==2323166==  Uninitialised value was created by a stack allocation
+==2323166==    at 0x109548: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323166== 
+==2323166== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
+==2323117== 
+==2323117== HEAP SUMMARY:
+==2323117==     in use at exit: 0 bytes in 0 blocks
+==2323117==   total heap usage: 33 allocs, 33 frees, 67,939 bytes allocated
+==2323117== 
+==2323117== All heap blocks were freed -- no leaks are possible
+==2323117== 
+==2323117== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
+==2323117== 
+==2323117== 1 errors in context 1 of 4:
+==2323117== Syscall param rt_sigaction(act->sa_flags) points to uninitialised byte(s)
+==2323117==    at 0x489E166: __libc_sigaction (sigaction.c:58)
+==2323117==    by 0x10978B: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323117==  Address 0x1ffeffff08 is on thread 1's stack
+==2323117==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==2323117==  Uninitialised value was created by a stack allocation
+==2323117==    at 0x109548: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323117== 
+==2323117== 
+==2323117== 1 errors in context 2 of 4:
+==2323117== Syscall param rt_sigaction(act->sa_mask) points to uninitialised byte(s)
+==2323117==    at 0x489E166: __libc_sigaction (sigaction.c:58)
+==2323117==    by 0x10978B: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323117==  Address 0x1ffeffff18 is on thread 1's stack
+==2323117==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==2323117==  Uninitialised value was created by a stack allocation
+==2323117==    at 0x109548: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323117== 
+==2323117== 
+==2323117== 1 errors in context 3 of 4:
+==2323117== Syscall param rt_sigaction(act->sa_flags) points to uninitialised byte(s)
+==2323117==    at 0x489E166: __libc_sigaction (sigaction.c:58)
+==2323117==    by 0x109772: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323117==  Address 0x1ffeffff08 is on thread 1's stack
+==2323117==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==2323117==  Uninitialised value was created by a stack allocation
+==2323117==    at 0x109548: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323117== 
+==2323117== 
+==2323117== 1 errors in context 4 of 4:
+==2323117== Syscall param rt_sigaction(act->sa_mask) points to uninitialised byte(s)
+==2323117==    at 0x489E166: __libc_sigaction (sigaction.c:58)
+==2323117==    by 0x109772: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323117==  Address 0x1ffeffff18 is on thread 1's stack
+==2323117==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==2323117==  Uninitialised value was created by a stack allocation
+==2323117==    at 0x109548: main (in /home/uriel/assignment-2-urielzbee/server/aesdsocket)
+==2323117== 
+==2323117== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
