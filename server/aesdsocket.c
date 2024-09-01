@@ -153,6 +153,10 @@ int main(int argc, char **argv)
 				while(1)
 				{
 					numBytes = recv(client_sockfd, data_in_buff, 99, 0);
+					if(numBytes == 0)
+					{
+						continue;
+					}
 					data_in_buff[numBytes] = '\0';
                     printf("Data length: %d, Data: %s \n", numBytes, data_in_buff);
 					fwrite(data_in_buff, sizeof(char), strlen(data_in_buff), file);
