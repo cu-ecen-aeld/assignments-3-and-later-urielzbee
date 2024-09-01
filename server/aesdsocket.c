@@ -144,7 +144,7 @@ int main(int argc, char **argv)
 			
 				// Receive data
 				char data_in_buff[100] = {0};
-				char data_out;
+				int data_out;
 				int numBytes = 0;
 				FILE * file;
 
@@ -167,6 +167,11 @@ int main(int argc, char **argv)
 						do
 						{
 							data_out = fgetc(file);
+							if(data_out < 1)
+							{
+	    						printf("fgetc error: %s\n", strerror(errno));
+								break;
+							}	
                             if(data_out != EOF)
                             {
 							    printf("%c", data_out);
