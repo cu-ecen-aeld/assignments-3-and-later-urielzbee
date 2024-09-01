@@ -9,6 +9,7 @@
 #include <arpa/inet.h>
 #include <signal.h>
 #include <stdbool.h>
+#include <errno.h>
 
 #define MAX_NUM_OF_CONNECTIONS 2
 
@@ -89,7 +90,7 @@ int main(int argc, char **argv)
 	status =  bind(socketfd, servinfo->ai_addr, servinfo->ai_addrlen);
 	if(status == -1)
 	{
-	    printf("Binding error");
+	    printf("Binding error: %s\n", strerror(errno));
 	    exit(-1);
 	}
 
