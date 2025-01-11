@@ -5,7 +5,7 @@ ifdef CROSS_COMPILE
 endif
 
 all:
-	$(CC) aesdsocket.c -o aesdsocket
+	$(CC) aesdsocket.c -o aesdsocket -Wall -pthread
 
 clean:
 	rm aesdsocket
